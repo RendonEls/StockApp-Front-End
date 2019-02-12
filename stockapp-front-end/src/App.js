@@ -36,7 +36,7 @@ class App extends Component {
     return (
       <div>
         <div className="nav">
-          <div className="nav-item Home">Home</div>
+          <div className="nav-item Home"><Link to="/"> Home</Link></div>
           <div className="nav-item Search">Search</div>
           <div className="nav-item Add" ><Link to="/newstock">Add </Link> </div>
         </div>
