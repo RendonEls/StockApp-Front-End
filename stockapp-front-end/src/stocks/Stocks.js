@@ -6,19 +6,22 @@ class Stocks extends Component {
         super()
         
         this.state={
-            stockData:[]
+            stocksData: []
         }
     }
 
     componentDidMount () {
         console.log('component mounted')
         axios.get('http://localhost:4001')
-          .then(res => res.json())
-          .then (json => {
+          
+          .then(json => {
               this.setState({
-                  stocksData: json
-              })
-              console.log(this.state.stockData)
+
+                  stocksData: json.data
+
+              }, () => console.log(this.state))
+              console.log(json)
+              console.log(this.state.stocksData)// this wont work async wont return
           })
           .catch((err) => {
             console.log(err)
@@ -29,10 +32,14 @@ class Stocks extends Component {
         //     return <h1 key={i}>{stock.symbol}</h1>;
         //     }
         // )
-
+        let stocksTest = null
+        if (this.state.stocksData.length > 0) {
+            stocksTest = this.state.stocksData[0].symbol
+        }
         return (
-            <div>
-                {this.state.stockData.symbol}
+            <div className="stockData">
+                <h1>{stocksTest}</h1>  
+                <h2>hi</h2>
             </div>
         );
     }

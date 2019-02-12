@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom"
+import {Route} from "react-router"
 import axios from 'axios'
 import Stocks from "./stocks/Stocks"
+import AddNewStock from './addNewStock/AddNewStock'
 
 class App extends Component {
 
@@ -33,11 +36,12 @@ class App extends Component {
     return (
       <div>
         <div className="nav">
-          <div className="Home">Home</div>
-          <div className="Search">Search</div>
-          <div className="Add">Add</div>
+          <div className="nav-item Home">Home</div>
+          <div className="nav-item Search">Search</div>
+          <div className="nav-item Add" ><Link to="/newstock">Add </Link> </div>
         </div>
-        <Stocks />
+        <Route exact path="/" render={() => <Stocks stocks={this.state.stocks} /> }/>
+        <Route path="/newstock" render={() => <AddNewStock />} />
       </div>
     );
   }
